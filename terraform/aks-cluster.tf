@@ -17,13 +17,13 @@ resource "azurerm_kubernetes_cluster" "k8s" {
     min_count            = 2
   }
 
-  linux_profile {
-    admin_username = "ubuntu"
+  # linux_profile {
+  #  admin_username = "ubuntu"
 
-    ssh_key {
-      key_data = file(var.ssh_public_key)
-    }
-  }
+  #  ssh_key {
+  #    key_data = file(var.ssh_public_key)
+  #  }
+  #}
 
   network_profile {
     network_plugin    = "kubenet"
