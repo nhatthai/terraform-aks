@@ -13,9 +13,7 @@ jobs:
     name: 'Terraform TEST'
     runs-on: ubuntu-latest
     environment: TEST
-    defaults:
-      run:
-        working-directory: terraform
+
     env:
       ARM_CLIENT_ID: ${{ secrets.AZURE_AD_CLIENT_ID }}
       ARM_CLIENT_SECRET: ${{ secrets.AZURE_AD_CLIENT_SECRET }}
@@ -49,12 +47,12 @@ jobs:
       shell: bash
       working-directory: '.'
       run: |
-        terraform plan -input=false -var-file="terraform.tfvars" -var "aks_service_principal_app_id=${{ secrets.AZURE_AD_CLIENT_ID }}"  -var "aks_service_principal_client_secret=${{ secrets.AZURE_AD_CLIENT_SECRET }}" -var "environment=${{ env.ENVIRONMENT }}"
+        terraform plan -input=false -var-file=".\terraform\terraform.tfvars" -var "aks_service_principal_app_id=${{ secrets.AZURE_AD_CLIENT_ID }}"  -var "aks_service_principal_client_secret=${{ secrets.AZURE_AD_CLIENT_SECRET }}" -var "environment=${{ env.ENVIRONMENT }}"
 
     - name: Terraform Apply
       shell: bash
       working-directory: '.'
-      run: terraform apply -auto-approve -input=false -var-file="terraform\terraform.tfvars" -var "aks_service_principal_app_id=${{ secrets.AZURE_AD_CLIENT_ID }}" -var "aks_service_principal_client_secret=${{ secrets.AZURE_AD_CLIENT_SECRET }}" -var "environment=${{ env.ENVIRONMENT }}"
+      run: terraform apply -auto-approve -input=false -var-file=".\terraform\terraform.tfvars" -var "aks_service_principal_app_id=${{ secrets.AZURE_AD_CLIENT_ID }}" -var "aks_service_principal_client_secret=${{ secrets.AZURE_AD_CLIENT_SECRET }}" -var "environment=${{ env.ENVIRONMENT }}"
 
     - name: Terraform Output
       id: terraform_outputs
@@ -83,7 +81,6 @@ jobs:
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
       run:
-        working-directory: terraform
         shell: bash
 
     steps:
@@ -117,7 +114,7 @@ jobs:
         tf_actions_subcommand: 'plan'
         tf_actions_working_dir: "./"
         args:
-          -var-file="terraform.tfvars"
+          -var-file=".\terraform\terraform.tfvars"
           -var "aks_service_principal_app_id=${{ secrets.AZURE_AD_CLIENT_ID }}"
           -var "aks_service_principal_client_secret=${{ secrets.AZURE_AD_CLIENT_SECRET }}"
           -var "environment=${{ env.ENVIRONMENT }}"
@@ -129,7 +126,7 @@ jobs:
         tf_actions_subcommand: 'apply'
         tf_actions_working_dir: "./"
         args:
-          -var-file="terraform\terraform.tfvars"
+          -var-file=".\terraform\terraform.tfvars"
           -var "aks_service_principal_app_id=${{ secrets.AZURE_AD_CLIENT_ID }}"
           -var "aks_service_principal_client_secret=${{ secrets.AZURE_AD_CLIENT_SECRET }}"
           -var "environment=${{ env.ENVIRONMENT }}"
