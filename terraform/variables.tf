@@ -2,6 +2,11 @@ variable "agent_count" {
   default = 2
 }
 
+# Environment
+var "environment" {
+  default = ""
+}
+
 # The following two variable declarations are placeholder references.
 # Set the values for these variable in terraform.tfvars
 variable "aks_service_principal_app_id" {
