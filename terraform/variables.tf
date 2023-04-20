@@ -3,7 +3,7 @@ variable "agent_count" {
 }
 
 # Environment
-var "environment" {
+variable "environment" {
   default = ""
 }
 
