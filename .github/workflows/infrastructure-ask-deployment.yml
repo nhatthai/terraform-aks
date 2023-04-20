@@ -70,9 +70,7 @@ jobs:
     name: 'Terraform STAGE'
     runs-on: ubuntu-latest
     environment: STAGE
-    defaults:
-      run:
-        working-directory: terraform
+
     env:
       ARM_CLIENT_ID: ${{ secrets.AZURE_AD_CLIENT_ID }}
       ARM_CLIENT_SECRET: ${{ secrets.AZURE_AD_CLIENT_SECRET }}
@@ -85,6 +83,7 @@ jobs:
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
       run:
+        working-directory: terraform
         shell: bash
 
     steps:
