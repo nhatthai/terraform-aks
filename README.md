@@ -1,5 +1,4 @@
 # Create Infrastructure AKS using Terraform
-    GitOps:
     + Create infrastructure Azure Kubernetes Service using Terraform
     + Using GitHub Action
         + Run Terraform
@@ -20,21 +19,16 @@
     ```
     Copy and paste appId and password into GitHub secert with AZURE_AD_CLIENT_ID, AZURE_AD_CLIENT_SECRET and AZURE_AD_TENANT_ID respectively
 
-+ Create Azure Credentials
++ Create storage accounts in Azure
     ```
-    az ad sp create-for-rbac --name "myAKS" --role contributor --scopes /subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP> --sdk-auth
-    ```
-    Copy and paste into secret AZURE_CREDENTIAL in the github repository
+    # Create Storage Account
+    az storage account create -n storageakstest -g containers -l koreacentral --sku Standard_LRS
 
-+ Make sure that you created storage accounts in Azure
-
-+ Set Role for storage accounts
-    Add <SubscriptionId> and <ResourceGroup>
-    ```
-    .\role.ps1
+    # Create Storage Account Container
+    az storage container create -n aks-container-test --account-name storageakstest --auth-mode login
     ```
 
-+ Add secret values into GitHub
++ Add secret values into Secret GitHub
     ```
     AZURE_AD_CLIENT_ID
     AZURE_AD_CLIENT_SECRET
@@ -42,7 +36,11 @@
     AZURE_AD_TENANT_ID
     ```
 
-+ Get Credentials for kubectl
-    ```
-    az aks get-credentials -n <AKS_NAME> -g <RESOURCE_GROUP>
-    ```
+### Result
+![AKS on Test](./images/test-aks.png)
+
+![Terraform State File in Azure Storage of Test](./images/test-terraform-state.png)
+
+![AKS on Stage](./images/stage-aks.png)
+
+![Terraform State File in Azure Storage of Stage](./images/stage-terraform-state.png)
