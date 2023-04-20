@@ -1,8 +1,9 @@
 # Create Infrastructure AKS using Terraform
-GitOps:
-    + Create infrastructure Azure Kubernetes Service using Terraform and
-    + Push terraform state file to Azure Storage.
-    + Using GitHub Actions
+    GitOps:
+    + Create infrastructure Azure Kubernetes Service using Terraform
+    + Using GitHub Action
+        + Run Terraform
+        + Push terraform state file to Azure Storage.
 
 ### Requisite
     + Install azure cli
@@ -28,6 +29,7 @@ GitOps:
 + Make sure that you created storage accounts in Azure
 
 + Set Role for storage accounts
+    Add <SubscriptionId> and <ResourceGroup>
     ```
     .\role.ps1
     ```
@@ -38,8 +40,6 @@ GitOps:
     AZURE_AD_CLIENT_SECRET
     AZURE_SUBSCRIPTION_ID
     AZURE_AD_TENANT_ID
-    AKS_SERVICE_PRINCIPAL_APP_ID
-    AKS_SERVICE_PRINCIPAL_CLIENT_SECRET
     ```
 
 + Get Credentials for kubectl

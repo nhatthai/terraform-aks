@@ -13,12 +13,15 @@ jobs:
     name: 'Terraform TEST'
     runs-on: ubuntu-latest
     environment: TEST
+    defaults:
+      run:
+        working-directory: terraform
     env:
       ARM_CLIENT_ID: ${{ secrets.AZURE_AD_CLIENT_ID }}
       ARM_CLIENT_SECRET: ${{ secrets.AZURE_AD_CLIENT_SECRET }}
       ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
       ARM_TENANT_ID: ${{ secrets.AZURE_AD_TENANT_ID }}
-      STORAGE_ACCOUNT: aks-storage-test
+      STORAGE_ACCOUNT: storageakstest
       CONTAINER_NAME:  aks-container-test
       ENVIRONMENT: TEST
 
@@ -46,7 +49,7 @@ jobs:
       shell: bash
       working-directory: '.'
       run: |
-        terraform plan -input=false -var-file="terraform\terraform.tfvars" -var "aks_service_principal_app_id=${{ secrets.AZURE_AD_CLIENT_ID }}"  -var "aks_service_principal_client_secret=${{ secrets.AZURE_AD_CLIENT_SECRET }}" -var "environment=${{ env.ENVIRONMENT }}"
+        terraform plan -input=false -var-file="terraform.tfvars" -var "aks_service_principal_app_id=${{ secrets.AZURE_AD_CLIENT_ID }}"  -var "aks_service_principal_client_secret=${{ secrets.AZURE_AD_CLIENT_SECRET }}" -var "environment=${{ env.ENVIRONMENT }}"
 
     - name: Terraform Apply
       shell: bash
@@ -67,12 +70,15 @@ jobs:
     name: 'Terraform STAGE'
     runs-on: ubuntu-latest
     environment: STAGE
+    defaults:
+      run:
+        working-directory: terraform
     env:
       ARM_CLIENT_ID: ${{ secrets.AZURE_AD_CLIENT_ID }}
       ARM_CLIENT_SECRET: ${{ secrets.AZURE_AD_CLIENT_SECRET }}
       ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
       ARM_TENANT_ID: ${{ secrets.AZURE_AD_TENANT_ID }}
-      STORAGE_ACCOUNT: aks-storage-stage
+      STORAGE_ACCOUNT: storageaksstage
       CONTAINER_NAME: aks-container-stage
       ENVIRONMENT: STAGE
 
@@ -112,7 +118,7 @@ jobs:
         tf_actions_subcommand: 'plan'
         tf_actions_working_dir: "./"
         args:
-          -var-file="terraform\terraform.tfvars"
+          -var-file="terraform.tfvars"
           -var "aks_service_principal_app_id=${{ secrets.AZURE_AD_CLIENT_ID }}"
           -var "aks_service_principal_client_secret=${{ secrets.AZURE_AD_CLIENT_SECRET }}"
           -var "environment=${{ env.ENVIRONMENT }}"
