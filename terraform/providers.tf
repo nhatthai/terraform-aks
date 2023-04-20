@@ -6,15 +6,11 @@ terraform {
       source  = "hashicorp/azurerm"
       version = "~>3.0"
     }
-    random = {
-      source  = "hashicorp/random"
-      version = "~>3.0"
-    }
   }
 
-  backend "azurerm" {
+   backend "azurerm" {
     resource_group_name  = "containers"
-    key                  = "auth0.tfstate"
+    key                  = "aks.tfstate"
   }
 }
 

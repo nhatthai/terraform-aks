@@ -1,6 +1,6 @@
 # Create Infrastructure AKS using Terraform
     + Create infrastructure Azure Kubernetes Service using Terraform
-    + Using GitHub Action
+    + Using GitHub Actions
         + Run Terraform
         + Push terraform state file to Azure Storage.
 
@@ -17,7 +17,7 @@
     ```
     az ad sp create-for-rbac --name "myAKS" --role contributor --scopes /subscriptions/<SUBSCRIPTION_ID>
     ```
-    Copy and paste appId and password into GitHub secert with AZURE_AD_CLIENT_ID, AZURE_AD_CLIENT_SECRET and AZURE_AD_TENANT_ID respectively
+    Copy and paste appId and password into Secret GitHub with AZURE_AD_CLIENT_ID, AZURE_AD_CLIENT_SECRET and AZURE_AD_TENANT_ID respectively
 
 + Create storage accounts in Azure
     ```
