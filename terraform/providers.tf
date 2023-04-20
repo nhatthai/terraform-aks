@@ -11,8 +11,14 @@ terraform {
       version = "~>3.0"
     }
   }
+
+  backend "azurerm" {
+    resource_group_name  = "containers"
+    key                  = "auth0.tfstate"
+  }
 }
 
 provider "azurerm" {
+  version = "2.98"
   features {}
 }
