@@ -45,12 +45,12 @@ jobs:
       shell: bash
       working-directory: '.'
       run: |
-        terraform plan -input=false -var-file="terraform.tfvars" -var "aks_service_principal_app_id=${{ secrets.AZURE_AD_CLIENT_ID }}"  -var "aks_service_principal_client_secret=${{ secrets.AZURE_AD_CLIENT_SECRET }}" -var "environment=${{ env.ENVIRONMENT }}"
+        terraform plan -input=false -var-file="terraform\terraform.tfvars" -var "aks_service_principal_app_id=${{ secrets.AZURE_AD_CLIENT_ID }}"  -var "aks_service_principal_client_secret=${{ secrets.AZURE_AD_CLIENT_SECRET }}" -var "environment=${{ env.ENVIRONMENT }}"
 
     - name: Terraform Apply
       shell: bash
       working-directory: '.'
-      run: terraform apply -auto-approve -input=false -var-file="terraform.tfvars" -var "aks_service_principal_app_id=${{ secrets.AZURE_AD_CLIENT_ID }}" -var "aks_service_principal_client_secret=${{ secrets.AZURE_AD_CLIENT_SECRET }}" -var "environment=${{ env.ENVIRONMENT }}"
+      run: terraform apply -auto-approve -input=false -var-file="terraform\terraform.tfvars" -var "aks_service_principal_app_id=${{ secrets.AZURE_AD_CLIENT_ID }}" -var "aks_service_principal_client_secret=${{ secrets.AZURE_AD_CLIENT_SECRET }}" -var "environment=${{ env.ENVIRONMENT }}"
 
     - name: Terraform Output
       id: terraform_outputs
@@ -111,7 +111,7 @@ jobs:
         tf_actions_subcommand: 'plan'
         tf_actions_working_dir: "./"
         args:
-          -var-file="terraform.tfvars"
+          -var-file="terraform\terraform.tfvars"
           -var "aks_service_principal_app_id=${{ secrets.AZURE_AD_CLIENT_ID }}"
           -var "aks_service_principal_client_secret=${{ secrets.AZURE_AD_CLIENT_SECRET }}"
           -var "environment=${{ env.ENVIRONMENT }}"
@@ -123,7 +123,7 @@ jobs:
         tf_actions_subcommand: 'apply'
         tf_actions_working_dir: "./"
         args:
-          -var-file="terraform.tfvars"
+          -var-file="terraform\terraform.tfvars"
           -var "aks_service_principal_app_id=${{ secrets.AZURE_AD_CLIENT_ID }}"
           -var "aks_service_principal_client_secret=${{ secrets.AZURE_AD_CLIENT_SECRET }}"
           -var "environment=${{ env.ENVIRONMENT }}"
