@@ -53,6 +53,11 @@ variable "ssh_public_key" {
   default = "~/.ssh/id_rsa.pub"
 }
 
+variable "aks_service_principal_object_id" {
+  description = "Object ID of the service principal."
+  default=""
+}
+
 variable "virtual_network_name" {
   description = "Virtual network name"
   default     = "aksVirtualNetwork"
