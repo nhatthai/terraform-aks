@@ -36,3 +36,7 @@ output "kube_config" {
 output "resource_group_name" {
   value = azurerm_resource_group.rg.name
 }
+
+output "application_ip_address" {
+  value = azurerm_public_ip.test.ip_address
+}

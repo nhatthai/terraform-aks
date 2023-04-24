@@ -22,7 +22,7 @@ variable "cluster_name" {
 }
 
 variable "dns_prefix" {
-  default = "learnk8s"
+  default = "aks"
 }
 
 # Refer to https://azure.microsoft.com/global-infrastructure/services/?products=monitor for available Log Analytics regions.
@@ -51,4 +51,39 @@ variable "resource_group_name_prefix" {
 
 variable "ssh_public_key" {
   default = "~/.ssh/id_rsa.pub"
+}
+
+variable "virtual_network_name" {
+  description = "Virtual network name"
+  default     = "aksVirtualNetwork"
+}
+
+variable "virtual_network_address_prefix" {
+  description = "VNET address prefix"
+  default     = "192.168.0.0/16"
+}
+
+variable "aks_subnet_name" {
+  description = "Subnet Name."
+  default     = "kubesubnet"
+}
+
+variable "aks_subnet_address_prefix" {
+  description = "Subnet address prefix."
+  default     = "192.168.0.0/24"
+}
+
+variable "app_gateway_subnet_address_prefix" {
+  description = "Subnet server IP address."
+  default     = "192.168.1.0/24"
+}
+
+variable "app_gateway_name" {
+  description = "Name of the Application Gateway"
+  default     = "ApplicationGateway1"
+}
+
+variable "app_gateway_sku" {
+  description = "Name of the Application Gateway SKU"
+  default     = "Standard_v2"
 }
