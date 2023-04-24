@@ -44,3 +44,7 @@
 ![AKS on Stage](./images/stage-aks.png)
 
 ![Terraform State File in Azure Storage of Stage](./images/stage-terraform-state.png)
+
+### References
++ [AKS Application Gateway Ingress](https://learn.microsoft.com/en-us/azure/developer/terraform/create-k8s-cluster-with-aks-applicationgateway-ingress)
++ [Fix RoleAssignment](https://learn.microsoft.com/en-us/answers/questions/287573/authorization-failed-when-when-writing-a-roleassig)
