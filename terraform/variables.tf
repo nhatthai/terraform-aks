@@ -87,3 +87,11 @@ variable "app_gateway_sku" {
   description = "Name of the Application Gateway SKU"
   default     = "Standard_v2"
 }
+
+variable "tags" {
+  type = map(string)
+
+  default = {
+    source = "terraform"
+  }
+}
