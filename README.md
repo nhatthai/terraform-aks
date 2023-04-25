@@ -18,6 +18,7 @@
     az ad sp create-for-rbac --name "myAKS" --role contributor --scopes /subscriptions/<SUBSCRIPTION_ID>
     ```
     Copy and paste appId and password into Secret GitHub with AZURE_AD_CLIENT_ID, AZURE_AD_CLIENT_SECRET and AZURE_AD_TENANT_ID respectively
+    Note: Fix Role Assignment
 
 + Create storage accounts in Azure
     ```
@@ -47,4 +48,4 @@
 
 ### References
 + [AKS Application Gateway Ingress](https://learn.microsoft.com/en-us/azure/developer/terraform/create-k8s-cluster-with-aks-applicationgateway-ingress)
-+ [Fix RoleAssignment](https://learn.microsoft.com/en-us/answers/questions/287573/authorization-failed-when-when-writing-a-roleassig)
++ [Fix Role Assignment](https://learn.microsoft.com/en-us/answers/questions/287573/authorization-failed-when-when-writing-a-roleassig)

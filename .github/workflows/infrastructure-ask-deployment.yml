@@ -105,19 +105,17 @@ jobs:
       shell: bash
       working-directory: './terraform'
       run: |
-        terraform plan -input=false -var-file="terraform.tfvars" \
-          -var "aks_service_principal_app_id=${{ secrets.AZURE_AD_CLIENT_ID }}"  \
+        terraform plan -input=false -var "aks_service_principal_app_id=${{ secrets.AZURE_AD_CLIENT_ID }}"  \
           -var "aks_service_principal_client_secret=${{ secrets.AZURE_AD_CLIENT_SECRET }}" \
-          -var "aks_service_principal_object_id =${{ secrets.AZURE_SERVICE_PRINCIPAL_OBJECT_ID }}" \
+          -var "aks_service_principal_object_id=${{ secrets.AZURE_SERVICE_PRINCIPAL_OBJECT_ID }}" \
           -var "environment=${{ env.ENVIRONMENT }}"
 
     - name: Terraform Apply
       shell: bash
       working-directory: './terraform'
-      run: terraform apply -auto-approve -input=false -var-file="terraform.tfvars" \
-        -var "aks_service_principal_app_id=${{ secrets.AZURE_AD_CLIENT_ID }}" \
+      run: terraform apply -auto-approve -input=false -var "aks_service_principal_app_id=${{ secrets.AZURE_AD_CLIENT_ID }}" \
         -var "aks_service_principal_client_secret=${{ secrets.AZURE_AD_CLIENT_SECRET }}" \
-        -var "aks_service_principal_object_id =${{ secrets.AZURE_SERVICE_PRINCIPAL_OBJECT_ID }}" \
+        -var "aks_service_principal_object_id=${{ secrets.AZURE_SERVICE_PRINCIPAL_OBJECT_ID }}" \
         -var "environment=${{ env.ENVIRONMENT }}"
 
     - name: Terraform Output

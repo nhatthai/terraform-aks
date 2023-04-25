@@ -55,7 +55,7 @@ variable "ssh_public_key" {
 
 variable "aks_service_principal_object_id" {
   description = "Object ID of the service principal."
-  default=""
+  default     = ""
 }
 
 variable "virtual_network_name" {
